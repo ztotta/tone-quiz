@@ -8,11 +8,21 @@ import QuizHeader from './Quiz-Header';
 import QuizOptions from './Quiz-Options';
 import QuizFooter from './Quiz-Footer/Quiz-Footer';
 
+const styles = {
+	styleRoot: {
+		height: '99%',
+		padding: '5px'
+	},
+	grid: {
+		height: '100%'
+	}
+}
+
 class Quiz extends Component {
   render() {
     return (
-			<StyleRoot>
-				<Grid>
+			<StyleRoot style={styles.styleRoot}>
+				<Grid style={styles.grid}>
 					<QuizHeader />
 					<QuizOptions />
 					<QuizFooter />

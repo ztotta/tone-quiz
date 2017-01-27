@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router';
 var RadiumGrid = require('radium-grid');
 const { Cell } = RadiumGrid;
 
@@ -29,7 +28,7 @@ class QuizFooter extends Component {
 				verticalAlign="top"
 				width="1"
 			>
-				<h3 style={styles.h3}><Link to='/'>3/10</Link></h3>
+				<h3 style={styles.h3}>3/10</h3>
 			</Cell>
     );
   }
