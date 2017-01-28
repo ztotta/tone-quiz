@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-var Radium = require('radium');
 var RadiumGrid = require('radium-grid');
 const { Cell, Grid } = RadiumGrid;
 
@@ -40,7 +39,7 @@ class QuizOptions extends Component {
 							width="1"
 							key={option}
 						>
-							<h3 style={styles.h3}>option</h3>
+							<h3 style={styles.h3}>{option}</h3>
 						</Cell>
 					)
 				})}
