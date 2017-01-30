@@ -37,9 +37,7 @@ class ToneGenerator extends Component {
                 type="sine"
                 steps={[
                   [0, 8, this.state.note ],
-                  [8, 8, this.state.note ],
-                  [12, 8, this.state.note ],
-                  [16, 8, this.state.note ]
+                  [8, 8, this.state.note ]
                 ]}
               />
             </Sequencer>

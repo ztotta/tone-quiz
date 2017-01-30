@@ -23,6 +23,7 @@ const styles = {
 }
 
 class QuizHeader extends Component {
+	
   render() {
     return (
 			<Cell 
@@ -31,7 +32,7 @@ class QuizHeader extends Component {
 				width="1"
 			>
 				<h3 style={styles.h3}>Choose the correct frequency:</h3>
-				<ToneGenerator note={'c4'} />
+				<ToneGenerator note={this.props.note} />
 			</Cell>
     );
   }

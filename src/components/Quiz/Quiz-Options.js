@@ -23,15 +23,35 @@ const styles = {
 	}
 }
 
-let options = ['option 1', 'option 2', 'option 3', 'option 4'];
-
 class QuizOptions extends Component {
 	
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			choices: [],
+			correct: this.props.note,
+			notes:   this.props.notes
+		};
+	}
+
+	componentWillMount() {
+		var noteList = this.state.notes.filter(el => el.note !== this.state.correct)
+		
+		this.state.choices.push(noteList[Math.floor(Math.random() * noteList.length)].note);
+			this.state.choices.push(noteList[Math.floor(Math.random() * noteList.length)].note);
+			this.state.choices.push(noteList[Math.floor(Math.random() * noteList.length)].note);
+		this.state.choices.push(this.state.correct);
+	}
+	
+	checkChoice(option) {
+		console.log(option, "option!!")
+	}
 	
   render() {
     return (
 			<Grid>
-				{options.map(option => {
+				{this.state.choices.map(option => {
 					return(
 						<Cell 
 							style={styles.cellHeader}
@@ -39,7 +59,7 @@ class QuizOptions extends Component {
 							width="1"
 							key={option}
 						>
-							<h3 style={styles.h3}>{option}</h3>
+							<button onClick={this.checkChoice.bind(this, option)} style={styles.h3}>{option}</button>
 						</Cell>
 					)
 				})}
