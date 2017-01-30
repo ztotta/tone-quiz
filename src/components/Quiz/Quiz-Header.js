@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 var RadiumGrid = require('radium-grid');
 const { Cell } = RadiumGrid;
 
+import ToneGenerator from '../../Tone-Generator';
+
 const styles = {
 	cellHeader: {
     boxSizing: "border-box",
@@ -29,6 +31,7 @@ class QuizHeader extends Component {
 				width="1"
 			>
 				<h3 style={styles.h3}>Choose the correct frequency:</h3>
+				<ToneGenerator note={'c4'} />
 			</Cell>
     );
   }

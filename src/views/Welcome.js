@@ -4,7 +4,7 @@ var RadiumGrid = require('radium-grid');
 const { StyleRoot } = Radium; 
 const { Grid, Cell } = RadiumGrid;
 
-import Button from '../components/Button';
+import StartButton from '../components/Start-Button';
 
 const styles = {
 	cell: {
@@ -38,7 +38,7 @@ class Welcome extends Component {
 				>
 					<Cell 
 						style={styles.cellHeader}
-						verticalAlign="center"
+						verticalAlign="middle"
 						align="center"
 						width="1"
 					>
@@ -48,7 +48,7 @@ class Welcome extends Component {
 						style={styles.cell}
 						verticalAlign="top"
 					>
-						<Button children={'Start'}/>
+						<StartButton />
 					</Cell>
 				</Grid>
 			</StyleRoot>

@@ -18,7 +18,7 @@ class ContainerMain extends Component {
 				<Sidebar content={items} 
 						background={'white'} 
 						breakPoint={980}
-						toggleIconColor={'#045fb4'}
+						toggleIconColor={'white'}
 						activeHightlight={'#045fb4'}
 						width={200}
 				>

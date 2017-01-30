@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import                    './App.css';
 import ContainerMain from './containers/Container-Main';
 import TakingQuiz    from './views/Taking-Quiz';
+import ToneTest      from './views/Tone-Test';
 import Welcome       from './views/Welcome';
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
 				<Route path='/' component={ContainerMain}>
 					<IndexRoute component={Welcome} />
 					<Route path='taking-quiz' component={TakingQuiz} />
+					<Route path='tone' component={ToneTest} />
 				</Route>
 			</Router>
     );

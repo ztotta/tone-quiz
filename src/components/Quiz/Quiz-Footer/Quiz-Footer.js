@@ -21,6 +21,7 @@ const styles = {
 }
 
 class QuizFooter extends Component {
+	
   render() {
     return (
 			<Cell 

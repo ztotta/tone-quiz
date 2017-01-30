@@ -13,7 +13,7 @@ const styles = {
 		border: "1px solid #045fb4",
 		width: '100%',
 		':hover': {
-      background: '#777'
+      backgroundColor: '#777'
     },
 		backgroundColor: "white",
 		cursor: 'pointer'
