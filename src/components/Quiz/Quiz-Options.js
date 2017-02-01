@@ -34,25 +34,39 @@ const styles = {
 
 class QuizOptions extends Component {
   render() {
+		
     return (
 			<Grid>
-				{this.props.choices.sort().map(option => {
-					return(
+				{this.props.choices.length ? (
+					this.props.choices.sort().map(option => {
+						return(
+							<Cell 
+								style={styles.cellHeader}
+								verticalAlign="top"
+								width="1"
+								key={option + Math.random()}
+							>
+								<button 
+									onClick={this.props.checkChoice.bind(this, option)} 
+									style={styles.button}
+								>
+									{option}
+								</button>
+							</Cell>
+						)})
+					) : (
 						<Cell 
 							style={styles.cellHeader}
 							verticalAlign="top"
 							width="1"
-							key={option + Math.random()}
 						>
 							<button 
-								onClick={this.props.checkChoice.bind(this, option)} 
 								style={styles.button}
 							>
-								{option}
+								Hello
 							</button>
 						</Cell>
-					)
-				})}
+				)}
 			</Grid>
     );
   }

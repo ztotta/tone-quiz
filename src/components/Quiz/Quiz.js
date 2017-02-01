@@ -44,9 +44,12 @@ class Quiz extends Component {
 		super(props);
 
 		this.state = {
+			alert: 					'',
 			choices:        [],
 			correct:        note,
+			firstTry:       true, // if 'true', the user can still gain a point. if 'false', they can still guess for 0 points
 			notes:          notes,
+			numberCorrect:  0,
 			questionNumber: 1
 		};
 	}
@@ -57,30 +60,55 @@ class Quiz extends Component {
 	
 	pushChoices() {
 		var noteList = this.state.notes.filter(el => el.note !== this.state.correct)
-		this.state.choices.push(noteList[Math.floor(Math.random() * noteList.length)].note);
-			this.state.choices.push(noteList[Math.floor(Math.random() * noteList.length)].note);
-			this.state.choices.push(noteList[Math.floor(Math.random() * noteList.length)].note);
-		this.state.choices.push(this.state.correct);
+		var choiceArr = [];
+		
+		choiceArr.push(noteList[Math.floor(Math.random() * noteList.length)].note);
+		choiceArr.push(noteList[Math.floor(Math.random() * noteList.length)].note);
+		choiceArr.push(noteList[Math.floor(Math.random() * noteList.length)].note);
+		choiceArr.push(this.state.correct);
+		
+		this.setState({ 
+			choices:  choiceArr,
+			firstTry: true
+		})
+		return choiceArr;
+	}
+	
+	clearAlert() {
+		setTimeout(() => {
+			this.setState({ alert: '' });
+		}, 2000)
 	}
 	
 	checkChoice(option) {
 		if (option === this.state.correct) {
-			console.log('correct!')
-			this.state.choices.splice(0);
-			this.state.questionNumber++
-			this.pushChoices();
-			this.setState(this.state);
+			this.setState({
+				alert:          'Correct!',	
+				choices:        this.pushChoices(),
+				numberCorrect:  this.state.firstTry ? this.state.numberCorrect += 1 : this.state.numberCorrect,
+				questionNumber: this.state.questionNumber += 1
+			}, function afterSetState() {
+					console.log('setState callback entered')
+					console.log('numberCorrect: ', this.state.numberCorrect)
+				})
+			
+			this.clearAlert();
 		} else {
-			console.log('incorrect!')
+			// Alert the user that they missed it & update firstTry
+			this.setState({ 
+				alert:    'Try again!',
+				firstTry: false
+			}, function() {
+				this.clearAlert();
+			})
 		}
 	}
 	
   render() {
-		
     return (
 			<StyleRoot style={styles.styleRoot}>
 				<Grid style={styles.grid}>
-					<QuizHeader note={note} />
+					<QuizHeader note={note} alert={this.state.alert} />
 					<QuizOptions choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} />
 					<QuizFooter questionNumber={this.state.questionNumber} />
 				</Grid>

@@ -33,6 +33,7 @@ class QuizHeader extends Component {
 			>
 				<h3 style={styles.h3}>Choose the correct frequency:</h3>
 				<ToneGenerator note={this.props.note} />
+				<h3 style={styles.h3}>{this.props.alert}</h3>
 			</Cell>
     );
   }
