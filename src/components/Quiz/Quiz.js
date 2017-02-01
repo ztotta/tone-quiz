@@ -39,13 +39,50 @@ var noteObj = notes[Math.floor(Math.random() * notes.length)];
 var note    = noteObj.note;
 
 class Quiz extends Component {
+	
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			choices:        [],
+			correct:        note,
+			notes:          notes,
+			questionNumber: 1
+		};
+	}
+
+	componentWillMount() {
+		var noteList = this.state.notes.filter(el => el.note !== this.state.correct)
+		this.state.choices.push(noteList[Math.floor(Math.random() * noteList.length)].note);
+			this.state.choices.push(noteList[Math.floor(Math.random() * noteList.length)].note);
+			this.state.choices.push(noteList[Math.floor(Math.random() * noteList.length)].note);
+		this.state.choices.push(this.state.correct);
+	}
+	
+	checkChoice(option) {
+		if (option === this.state.correct) {
+			console.log('correct!')
+			
+			this.setState({
+				questionNumber: this.state.questionNumber++
+			})
+			
+			console.log('questioNNumber: ', this.state.questionNumber)
+			
+		} else {
+			console.log('incorrect!')
+		}
+	}
+	
+	
+	
   render() {
     return (
 			<StyleRoot style={styles.styleRoot}>
 				<Grid style={styles.grid}>
 					<QuizHeader note={note} />
-					<QuizOptions note={note} notes={notes} />
-					<QuizFooter />
+					<QuizOptions choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} />
+					<QuizFooter questionNumber={this.state.questionNumber} />
 				</Grid>
 			</StyleRoot>
     );

@@ -22,6 +22,14 @@ const styles = {
 
 class QuizFooter extends Component {
 	
+	constructor(props) {
+		super(props);
+		
+		this.state = {
+			questionNumber: this.props.questionNumber
+		}
+	}
+	
   render() {
     return (
 			<Cell 
@@ -29,7 +37,7 @@ class QuizFooter extends Component {
 				verticalAlign="top"
 				width="1"
 			>
-				<h3 style={styles.h3}>3/10</h3>
+				<h3 style={styles.h3}>{this.state.questionNumber}/10</h3>
 			</Cell>
     );
   }
