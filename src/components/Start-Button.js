@@ -21,9 +21,6 @@ const style = {
 }
 
 class StartButton extends Component {
-	startQuiz() {
-		console.log('starting')
-	}
 	
 	render() {
 		return(
@@ -33,7 +30,6 @@ class StartButton extends Component {
 			>
 				<button 
 					style={style.button}
-					onClick={this.startQuiz.bind(this)}
 				>
 					Start
 				</button>

@@ -52,6 +52,10 @@ class Quiz extends Component {
 	}
 
 	componentWillMount() {
+		this.pushChoices();
+	}
+	
+	pushChoices() {
 		var noteList = this.state.notes.filter(el => el.note !== this.state.correct)
 		this.state.choices.push(noteList[Math.floor(Math.random() * noteList.length)].note);
 			this.state.choices.push(noteList[Math.floor(Math.random() * noteList.length)].note);
@@ -62,21 +66,17 @@ class Quiz extends Component {
 	checkChoice(option) {
 		if (option === this.state.correct) {
 			console.log('correct!')
-			
-			this.setState({
-				questionNumber: this.state.questionNumber++
-			})
-			
-			console.log('questioNNumber: ', this.state.questionNumber)
-			
+			this.state.choices.splice(0);
+			this.state.questionNumber++
+			this.pushChoices();
+			this.setState(this.state);
 		} else {
 			console.log('incorrect!')
 		}
 	}
 	
-	
-	
   render() {
+		
     return (
 			<StyleRoot style={styles.styleRoot}>
 				<Grid style={styles.grid}>
