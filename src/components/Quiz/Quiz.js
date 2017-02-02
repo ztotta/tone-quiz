@@ -35,18 +35,15 @@ var notes = [
 	{note: 'a5', freq: 14080},
 	{note: 'b5', freq: 15804}
 ];
-var noteObj = notes[Math.floor(Math.random() * notes.length)];
-var note    = noteObj.note;
 
 class Quiz extends Component {
-	
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			alert: 					'',
 			choices:        [],
-			correct:        note,
+			correct:        notes[Math.floor(Math.random() * notes.length)].note,
 			firstTry:       true, // if 'true', the user can still gain a point. if 'false', they can still guess for 0 points
 			notes:          notes,
 			numberCorrect:  0,
@@ -55,10 +52,14 @@ class Quiz extends Component {
 	}
 
 	componentWillMount() {
+		console.log('componentWillMount function')
 		this.pushChoices();
 	}
 	
+	// Update this.state.choices with new set of correct/incorrect options to be populated:
 	pushChoices() {
+		console.log('pushChoices function')
+		
 		var noteList = this.state.notes.filter(el => el.note !== this.state.correct)
 		var choiceArr = [];
 		
@@ -68,12 +69,11 @@ class Quiz extends Component {
 		choiceArr.push(this.state.correct);
 		
 		this.setState({ 
-			choices:  choiceArr,
-			firstTry: true
+			choices:  choiceArr
 		})
-		return choiceArr;
 	}
 	
+	// Remove message to the user:
 	clearAlert() {
 		setTimeout(() => {
 			this.setState({ alert: '' });
@@ -81,20 +81,24 @@ class Quiz extends Component {
 	}
 	
 	checkChoice(option) {
+		console.log('checkChoice function')
+		// if user chooses correctly, update state accordingly:
 		if (option === this.state.correct) {
 			this.setState({
 				alert:          'Correct!',	
-				choices:        this.pushChoices(),
-				numberCorrect:  this.state.firstTry ? this.state.numberCorrect += 1 : this.state.numberCorrect,
-				questionNumber: this.state.questionNumber += 1
+				correct:  			notes[Math.floor(Math.random() * notes.length)].note,
+				numberCorrect:  this.state.firstTry ? this.state.numberCorrect + 1 : this.state.numberCorrect,
+				firstTry:       true,
+				questionNumber: this.state.questionNumber + 1
 			}, function afterSetState() {
+					this.pushChoices();
 					console.log('setState callback entered')
 					console.log('numberCorrect: ', this.state.numberCorrect)
 				})
 			
 			this.clearAlert();
-		} else {
-			// Alert the user that they missed it & update firstTry
+		} else { 							
+			// Alert the user that they missed it & update firstTry:
 			this.setState({ 
 				alert:    'Try again!',
 				firstTry: false
@@ -104,11 +108,17 @@ class Quiz extends Component {
 		}
 	}
 	
+	// RIGHT NOW => this.state.correct is not bubbling down correctly after the first time...
+	
   render() {
+		console.log('render function')
+		console.log('correct: ', this.state.correct)
+		console.log('choices: ', this.state.choices.sort())
+		
     return (
 			<StyleRoot style={styles.styleRoot}>
 				<Grid style={styles.grid}>
-					<QuizHeader note={note} alert={this.state.alert} />
+					<QuizHeader note={this.state.correct} alert={this.state.alert} />
 					<QuizOptions choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} />
 					<QuizFooter questionNumber={this.state.questionNumber} />
 				</Grid>
