@@ -9,8 +9,8 @@ class ContainerMain extends Component {
 	render() {
 	
 		let items = [
-			<SidebarItem><Link to='home'>Option 1</Link></SidebarItem>,
-			<SidebarItem><Link to='home'>Option 2</Link></SidebarItem>
+			<SidebarItem><Link to='/'>HOME</Link></SidebarItem>,
+			<SidebarItem><Link to='/taking-quiz'>START QUIZ</Link></SidebarItem>
 		];
 		
     return (
@@ -21,6 +21,7 @@ class ContainerMain extends Component {
 						toggleIconColor={'white'}
 						activeHightlight={'#045fb4'}
 						width={200}
+						color={'#90CAFF'}
 				>
 					<ContainerApp>
 						{this.props.children}

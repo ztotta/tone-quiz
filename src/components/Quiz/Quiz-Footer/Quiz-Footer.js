@@ -9,7 +9,7 @@ const styles = {
 		textAlign: 'center',
     marginBottom: "0.2rem",
     padding: "1rem",
-    height: "auto",
+    height: "10%",
 		border: "1px solid #045fb4",
 		borderRadius: "0 0 5px 5px",
 		backgroundColor: "white",
@@ -26,7 +26,7 @@ class QuizFooter extends Component {
     return (
 			<Cell 
 				style={styles.cellHeader}
-				verticalAlign="top"
+				verticalAlign="middle"
 				width="1"
 			>
 				<h3 style={styles.h3}>{this.props.questionNumber}/10</h3>

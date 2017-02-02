@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+//import { browserHistory, history } from 'react-router';
 var Radium = require('radium');
 var RadiumGrid = require('radium-grid');
 const { StyleRoot } = Radium; 
@@ -10,8 +11,8 @@ import QuizFooter from './Quiz-Footer/Quiz-Footer';
 
 const styles = {
 	styleRoot: {
-		height: '99%',
-		padding: '5px'
+		padding: '5px',
+		margin: '0 auto'
 	},
 	grid: {
 		height: '100%'
@@ -52,13 +53,13 @@ class Quiz extends Component {
 	}
 
 	componentWillMount() {
-		console.log('componentWillMount function')
+//		console.log('componentWillMount function')
 		this.pushChoices();
 	}
 	
 	// Update this.state.choices with new set of correct/incorrect options to be populated:
 	pushChoices() {
-		console.log('pushChoices function')
+//		console.log('pushChoices function')
 		
 		var noteList = this.state.notes.filter(el => el.note !== this.state.correct)
 		var choiceArr = [];
@@ -81,7 +82,7 @@ class Quiz extends Component {
 	}
 	
 	checkChoice(option) {
-		console.log('checkChoice function')
+//		console.log('checkChoice function')
 		// if user chooses correctly, update state accordingly:
 		if (option === this.state.correct) {
 			this.setState({
@@ -92,8 +93,9 @@ class Quiz extends Component {
 				questionNumber: this.state.questionNumber + 1
 			}, function afterSetState() {
 					this.pushChoices();
-					console.log('setState callback entered')
-					console.log('numberCorrect: ', this.state.numberCorrect)
+//					this.state.questionNumber === 2 ? this.context.router.transitionTo('completed-quiz') : console.log('no victory yet')
+//					console.log('setState callback entered')
+//					console.log('numberCorrect: ', this.state.numberCorrect)
 				})
 			
 			this.clearAlert();
@@ -108,18 +110,15 @@ class Quiz extends Component {
 		}
 	}
 	
-	// RIGHT NOW => this.state.correct is not bubbling down correctly after the first time...
-	
   render() {
-		console.log('render function')
+//		console.log('render function')
 		console.log('correct: ', this.state.correct)
-		console.log('choices: ', this.state.choices.sort())
 		
     return (
 			<StyleRoot style={styles.styleRoot}>
 				<Grid style={styles.grid}>
 					<QuizHeader note={this.state.correct} alert={this.state.alert} />
-					<QuizOptions choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} />
+					<QuizOptions choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
 					<QuizFooter questionNumber={this.state.questionNumber} />
 				</Grid>
 			</StyleRoot>

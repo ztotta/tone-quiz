@@ -25,9 +25,6 @@ const styles = {
 	grid: {
 		height: '100%',
 		width: '100%'
-	},
-	h1: {
-		color: 'white'
 	}
 }
 
@@ -45,13 +42,16 @@ class Welcome extends Component {
 						align="center"
 						width="1"
 					>
-						<h1 style={styles.h1}>Welcome</h1>
+						<h1>You did it!</h1>
+						<br/>
+						<h3>You answered 7/10 correctly.</h3>
+						
 					</Cell>
 					<Cell 
 						style={styles.cell}
 						verticalAlign="top"
 					>
-						<StartButton startPhrase={'Start!'} />
+						<StartButton startPhrase={'Want to try again?'} />
 					</Cell>
 				</Grid>
 			</StyleRoot>

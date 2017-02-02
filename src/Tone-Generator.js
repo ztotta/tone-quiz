@@ -1,6 +1,28 @@
 import React, { Component }  from 'react';
 import { Song, Sequencer, Synth } from 'react-music';
 
+const styles = {
+	button: {
+		display: 'flex',
+		boxSizing: "border-box",
+    color: "#045fb4",
+		textAlign: 'center',
+    margin: 'auto',
+    padding: "1rem",
+    height: "auto",
+		width: '100px',
+		borderRadius: '5px',
+		backgroundColor: "white",
+		cursor: 'pointer',
+		':hover': {
+			backgroundColor: "#777"
+		}
+	},
+	div: {
+		marginBottom: '5px',
+		height: 'auto'
+	}
+}
 
 class ToneGenerator extends Component {
   constructor(props) {
@@ -23,7 +45,7 @@ class ToneGenerator extends Component {
   
   render() {
     return (
-      <div style={{ paddingTop: '10px' }}>
+      <div style={styles.div}>
        
         <Song
           playing={this.state.playing}
@@ -47,6 +69,7 @@ class ToneGenerator extends Component {
           className="react-music-button"
           type="button"
           onClick={this.handlePlayToggle}
+          style={styles.button}
         >
           {this.state.playing ? 'Stop' : 'Play Tone'}
         </button>

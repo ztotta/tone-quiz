@@ -11,14 +11,13 @@ const styles = {
 		textAlign: 'center',
     marginBottom: "0.2rem",
     padding: "1rem",
-    height: "auto",
+    height: "20%",
 		border: "1px solid #045fb4",
 		borderRadius: "5px 5px 0 0",
 		backgroundColor: "white",
 		width: '100%'
   },
 	h3: {
-		margin: "auto"
 	}
 }
 
@@ -31,9 +30,9 @@ class QuizHeader extends Component {
 				verticalAlign="top"
 				width="1"
 			>
-				<h3 style={styles.h3}>Choose the correct frequency:</h3>
+				<h3 style={{margin: '5px 0'}}>Choose the correct frequency:</h3>
 				<ToneGenerator note={this.props.note} />
-				<h3 style={styles.h3}>{this.props.alert}</h3>
+				<h3 style={{margin: '0 auto'}}>{this.props.alert}</h3>
 			</Cell>
     );
   }

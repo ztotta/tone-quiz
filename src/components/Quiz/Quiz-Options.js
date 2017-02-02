@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+//import { Link } from 'react-router';
 var RadiumGrid = require('radium-grid');
 const { Cell, Grid } = RadiumGrid;
 
 const styles = {
 	button: {
-		 boxSizing: "border-box",
+		boxSizing: "border-box",
     color: "#045fb4",
 		textAlign: 'center',
     margin: 'auto',
@@ -27,6 +28,10 @@ const styles = {
 		backgroundColor: "white",
 		cursor: 'pointer',
   },
+	grid: {
+		height: '70%',
+		width: '100%'
+	},
 	h3: {
 		margin: "auto"
 	}
@@ -35,8 +40,10 @@ const styles = {
 class QuizOptions extends Component {
   render() {
 		
+//		var Linx = this.props.questionNumber === 2 ? <Link to='/completed-quiz'></Link> : <Link></Link>
+		
     return (
-			<Grid>
+			<Grid style={styles.grid}>
 				{this.props.choices.length ? (
 					this.props.choices.sort().map(option => {
 						return(
@@ -50,7 +57,7 @@ class QuizOptions extends Component {
 									onClick={this.props.checkChoice.bind(this, option)} 
 									style={styles.button}
 								>
-									{option}
+									{true ? option : option}
 								</button>
 							</Cell>
 						)})

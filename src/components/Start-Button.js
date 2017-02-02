@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const style = {
 	button: {
 		backgroundColor: '#777',
-		border: 'none',
+		border: '3px solid white',
 		borderRadius: 4,
 		color: '#fff',
 		width: '100%',
@@ -31,7 +31,7 @@ class StartButton extends Component {
 				<button 
 					style={style.button}
 				>
-					Start
+					{this.props.startPhrase}
 				</button>
 			</Link>
 		)
