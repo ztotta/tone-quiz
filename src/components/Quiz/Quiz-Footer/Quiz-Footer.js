@@ -13,7 +13,11 @@ const styles = {
 		border: "1px solid #045fb4",
 		borderRadius: "0 0 5px 5px",
 		backgroundColor: "white",
-		width: '100%'
+		width: '100%',
+		display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center'
   },
 	h3: {
 		margin: "auto"

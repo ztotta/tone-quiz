@@ -10,7 +10,8 @@ class ContainerMain extends Component {
 	
 		let items = [
 			<SidebarItem><Link to='/'>HOME</Link></SidebarItem>,
-			<SidebarItem><Link to='/taking-quiz'>START QUIZ</Link></SidebarItem>
+			<SidebarItem><Link to='/taking-quiz'>START QUIZ</Link></SidebarItem>,
+			<SidebarItem><Link to='/completed-quiz'>COMPLETED QUIZ</Link></SidebarItem>
 		];
 		
     return (

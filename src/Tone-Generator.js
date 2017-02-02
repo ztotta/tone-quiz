@@ -3,12 +3,10 @@ import { Song, Sequencer, Synth } from 'react-music';
 
 const styles = {
 	button: {
-		display: 'flex',
 		boxSizing: "border-box",
     color: "#045fb4",
 		textAlign: 'center',
     margin: 'auto',
-    padding: "1rem",
     height: "auto",
 		width: '100px',
 		borderRadius: '5px',
