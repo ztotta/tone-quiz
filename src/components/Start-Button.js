@@ -3,13 +3,14 @@ import { Link } from 'react-router';
 
 const style = {
 	button: {
-		backgroundColor: '#777',
+		background: 'linear-gradient(to right, #a9a9a9, #777)',
 		border: '3px solid white',
 		borderRadius: 4,
 		color: '#fff',
 		width: '100%',
 		height: '50px',
 		padding: '5px 20px',
+		cursor: 'pointer',
 		':hover': {
 			backgroundColor: '#08f'
 		}
