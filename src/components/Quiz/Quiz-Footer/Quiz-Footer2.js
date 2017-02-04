@@ -27,7 +27,7 @@ class QuizFooter extends Component {
   render() {
     return (
 			<div className={'inner-wrapper progress'}>
-				<h3 style={styles.h3}>{this.props.questionNumber}/10</h3>
+				<h1 style={styles.h3}>{this.props.questionNumber}/10</h1>
 			</div>
     );
   }

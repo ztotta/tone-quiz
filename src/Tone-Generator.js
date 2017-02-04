@@ -4,17 +4,15 @@ import { Song, Sequencer, Synth } from 'react-music';
 const styles = {
 	button: {
 		boxSizing: "border-box",
-    color: "#045fb4",
+    color: "white",
 		textAlign: 'center',
     margin: 'auto',
     height: "6rem",
 		width: '6rem',
-		borderRadius: '50%',
-		backgroundColor: "white",
+		borderRadius: '15%',
+		background: "linear-gradient(to right, #d69480, rgb(216, 67, 21))",
 		cursor: 'pointer',
-		':hover': {
-			backgroundColor: "#777"
-		}
+		fontSize: '1.25em'
 	},
 	div: {
 		marginBottom: '5px',
@@ -61,7 +59,7 @@ class ToneGenerator extends Component {
               <Synth
                 type="sine"
                 steps={[
-                  [0, 8, this.state.note ]
+                  [0, 8, this.props.note ]
                 ]}
               />
             </Sequencer>
@@ -73,7 +71,7 @@ class ToneGenerator extends Component {
           onClick={this.handlePlayToggle}
           style={styles.button}
         >
-          {this.state.playing ? 'Stop' : 'Play Tone'}
+          {this.state.playing ? 'Stop' : 'Play'}
         </button>
       </div>
     );

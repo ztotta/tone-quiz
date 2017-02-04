@@ -1,3 +1,20 @@
+.alert-message {
+	margin: 0 auto; 
+	min-width: 230px;
+/*
+	height: 4rem;
+	background: linear-gradient(to right, #d69480, #d84315);
+	border-radius: 10px;
+	padding: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-size: 1.25em;
+	box-shadow: 0px 1px 1px black;
+*/
+}
+
 .App-container {
 	position: absolute;
 	top: 105px;
@@ -27,6 +44,21 @@
 	padding: 0;
 	font-family: 'Montserrat', sans-serif;
 	border-radius: 5px 5px 0 0; 
+}
+
+button {
+	border: none;
+	box-shadow: 0px 1px 1px black;
+}
+
+button:focus {
+	outline: 0;
+}
+
+button:active {
+/*	background: linear-gradient(to left, rgb(214, 162, 146), rgb(216, 67, 21)) !important;*/
+	box-shadow: 0px 0.5px 1px black;
+	transform: translateY(3px) !important;
 }
 
 .inner-wrapper {

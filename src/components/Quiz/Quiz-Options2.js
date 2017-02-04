@@ -42,7 +42,7 @@ class QuizOptions2 extends Component {
 									const ballStyles = {
 										width: '4rem',
 										height: '4rem',
-										background: 'linear-gradient(to right, #d0775b, #d84315',
+										background: 'linear-gradient(to right, #d69480, #d84315',
 										borderRadius: '50%',
 										WebkitTransform: `translate3d(0, ${style.y}px, 0)`,
 										opacity: style.o,
@@ -50,15 +50,16 @@ class QuizOptions2 extends Component {
 										display: 'flex',
 										justifyContent: 'center',
 										alignItems: 'center',
-										color: 'white'
+										color: 'white',
+										fontSize: '1.25em'
 									}
-									return <div style={ballStyles} 
+									return <button style={ballStyles} 
 															key={i}
 															ref={choices[i]} 
 															onClick={this.props.checkChoice.bind(this, choices[i])}
 												 >
 												 	{choices[i].slice(0,1)}
-												 </div>;
+												 </button>;
 								})}
 							</div>
 						}

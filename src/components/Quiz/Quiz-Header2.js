@@ -5,7 +5,7 @@ class QuizHeader2 extends Component {
   render() {
     return (
 			<div className={'inner-wrapper alert'}>
-				<h3 style={{margin: '0 auto', minWidth: '230px'}}>{this.props.alert}</h3>
+				<h2 className={'alert-message'}>{this.props.alert}</h2>
 			</div>
     );
   }
