@@ -5,7 +5,6 @@ import QuizOptions2 from './Quiz-Options2';
 import QuizFooter2 from './Quiz-Footer/Quiz-Footer2';
 import ToneGenerator from '../../Tone-Generator';
 
-// Assigning random notes for the quiz:
 var notes = [
 	{note: 'c5', freq: 8372},
 	{note: 'd5', freq: 9397},
@@ -16,85 +15,71 @@ var notes = [
 	{note: 'b5', freq: 15804}
 ];
 
-const startY = 100;
-const startOpacity = 0;
-
 class Quiz2 extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			alert: 					'',
-			choices:        [],
-			correct:        notes[Math.floor(Math.random() * notes.length)].note,
-			firstTry:       true, // if 'true', the user can still gain a point. if 'false', they can still guess for 0 points
-			notes:          notes,
-			numberCorrect:  0,
-			questionNumber: 1,
-			divArr: [
-				{y: startY, o: startOpacity},
-				{y: startY, o: startOpacity},
-				{y: startY, o: startOpacity},
-				{y: startY, o: startOpacity}
-			],
-			animate: true
+			userMessage: 		 '',
+			choices:         [],
+			correct:         notes[Math.floor(Math.random() * notes.length)].note, // Assigning random notes for the quiz:
+			firstTry:        true, // if 'true', the user can still gain a point. if 'false', they can still guess for 0 points
+			numberCorrect:   0,
+			questionNumber:  1,
+			notesEnter:      true
 		};
 	}
 
 	componentWillMount() {
-//		console.log('componentWillMount function')
 		this.pushChoices();
-		this.setState({alert: 'Choose the correct note:'})
+		this.setState({userMessage: 'Choose the correct note:'})
 	}	
 	
 	// Update this.state.choices with new set of correct/incorrect options to be populated:
 	pushChoices() {
-//		console.log('pushChoices function')
-		
-		var noteList = this.state.notes.filter(el => el.note !== this.state.correct)
+		var noteList = notes.filter(el => el.note !== this.state.correct)
 		var choiceArr = [];
 		
+		choiceArr.push(noteList[Math.floor(Math.random() * noteList.length)].note); // push the decoy notes
 		choiceArr.push(noteList[Math.floor(Math.random() * noteList.length)].note);
 		choiceArr.push(noteList[Math.floor(Math.random() * noteList.length)].note);
-		choiceArr.push(noteList[Math.floor(Math.random() * noteList.length)].note);
-		choiceArr.push(this.state.correct);
+		choiceArr.push(this.state.correct); // push the correct note
 		
-		this.setState({ choices:  choiceArr})
+		this.setState({ choices:  choiceArr}) // update this.state.choices with the new set of notes
 	}
 	
-	// Remove message to the user:
-	clearAlert() {
+	// Reset message to the user:
+	clearUserMessage() {
 		setTimeout(() => {
-			this.setState({ alert: 'Choose the correct note:' });
+			this.setState({ userMessage: 'Choose the correct note:' });
 		}, 2000)
 	}
 	
 	checkChoice(option) {
-//		console.log('checkChoice function')
 		// if user chooses correctly, update state accordingly:
 		if (option === this.state.correct) {
 			this.setState({
-				alert:          'Correct!',	
+				userMessage:          'Correct!',	
 				correct:  			notes[Math.floor(Math.random() * notes.length)].note,
 				numberCorrect:  this.state.firstTry ? this.state.numberCorrect + 1 : this.state.numberCorrect,
 				firstTry:       true,
 				questionNumber: this.state.questionNumber + 1,
-				animate: false
+				notesEnter: false          // reset the QuizOptions note enter animation
 			}, function afterSetState() {
 					this.pushChoices();
-					this.setState({ animate: true })
-//					this.state.questionNumber === 2 ? this.context.router.transitionTo('completed-quiz') : console.log('no victory yet')
-//					console.log('setState callback entered')
-//					console.log('numberCorrect: ', this.state.numberCorrect)
+					this.setState({ 
+						notesEnter:      true, // triggers rerender of QuizOptions noteEnter animation
+					}) 
 				})
-			this.clearAlert();
+			this.clearUserMessage();
 		} else { 							
-			// Alert the user that they missed it & update firstTry:
+			// Alert the user that they chose incorrectly & update firstTry:
 			this.setState({ 
-				alert:    'Try again!',
-				firstTry: false
+				userMessage:     'Try again!',
+				firstTry:        false, // prevents user from earning points after choosing incorrectly
+				notesEnter:      false,
 			}, function() {
-				this.clearAlert();
+				this.clearUserMessage();
 			})
 		}
 	}
@@ -105,9 +90,9 @@ class Quiz2 extends Component {
 		
     return (
 			<div className={'outer-wrapper'}>
-				<QuizHeader2 note={this.state.correct} alert={this.state.alert} />
+				<QuizHeader2 note={this.state.correct} userMessage={this.state.userMessage} />
 				<ToneGenerator note={this.state.correct} />
-				<QuizOptions2 animate={this.state.animate} choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
+				<QuizOptions2 incorrectChoice={this.state.incorrectChoice} notesEnter={this.state.notesEnter} choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
 				<QuizFooter2 questionNumber={this.state.questionNumber} />
 			</div>
     );
