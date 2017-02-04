@@ -61,8 +61,7 @@ class ToneGenerator extends Component {
               <Synth
                 type="sine"
                 steps={[
-                  [0, 8, this.state.note ],
-                  [8, 8, this.state.note ]
+                  [0, 8, this.state.note ]
                 ]}
               />
             </Sequencer>

@@ -96,7 +96,7 @@ class Quiz2 extends Component {
     return (
 			<div className={'outer-wrapper'}>
 				<QuizHeader2 note={this.state.correct} alert={this.state.alert} />
-				<ToneGenerator note={this.props.note} />
+				<ToneGenerator note={this.state.correct} />
 				<QuizOptions2 choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
 				<QuizFooter2 questionNumber={this.state.questionNumber} />
 			</div>
