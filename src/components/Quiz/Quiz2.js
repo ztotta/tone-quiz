@@ -26,7 +26,8 @@ class Quiz2 extends Component {
 			firstTry:        true, // if 'true', the user can still gain a point. if 'false', they can still guess for 0 points
 			numberCorrect:   0,
 			questionNumber:  1,
-			notesEnter:      true
+			notesEnter:      true,
+			incorrectNotes:   false
 		};
 	}
 
@@ -64,35 +65,37 @@ class Quiz2 extends Component {
 				numberCorrect:  this.state.firstTry ? this.state.numberCorrect + 1 : this.state.numberCorrect,
 				firstTry:       true,
 				questionNumber: this.state.questionNumber + 1,
-				notesEnter: false          // reset the QuizOptions note enter animation
+				notesEnter:     false,     // reset the QuizOptions note enter animation
+				incorrectNotes:  false
 			}, function afterSetState() {
 					this.pushChoices();
 					this.setState({ 
-						notesEnter:      true, // triggers rerender of QuizOptions noteEnter animation
+						notesEnter: true, 		 // triggers rendering of QuizOptions noteEnter animation
 					}) 
 				})
 			this.clearUserMessage();
 		} else { 							
 			// Alert the user that they chose incorrectly & update firstTry:
 			this.setState({ 
-				userMessage:     'Try again!',
-				firstTry:        false, // prevents user from earning points after choosing incorrectly
-				notesEnter:      false,
+				userMessage: 'Try again!',
+				firstTry:    false,        // prevents user from earning points after choosing incorrectly
+				notesEnter:  false,        // removes notesEnter QuizOptions
+				incorrectNotes: false      // resets incorrectNotes QuizOptions in case of multiple incorrect choices
 			}, function() {
 				this.clearUserMessage();
+				this.setState({ incorrectNotes: true }) // triggers rendering of incorrectNotes QuizOptions
 			})
 		}
 	}
 	
   render() {
-//		console.log('render function')
 		console.log('correct: ', this.state.correct)
 		
     return (
 			<div className={'outer-wrapper'}>
 				<QuizHeader2 note={this.state.correct} userMessage={this.state.userMessage} />
 				<ToneGenerator note={this.state.correct} />
-				<QuizOptions2 incorrectChoice={this.state.incorrectChoice} notesEnter={this.state.notesEnter} choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
+				<QuizOptions2 incorrectNotes={this.state.incorrectNotes} notesEnter={this.state.notesEnter} choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
 				<QuizFooter2 questionNumber={this.state.questionNumber} />
 			</div>
     );

@@ -2,16 +2,18 @@ import React, {Component} from 'react';
 import { StaggeredMotion, spring } from 'react-motion';
 
 const startY = 100;
-const startOpacity = 0;
+const startOpacityY = 0;
+const initialStiffnessY = 800;
+const initialDampingY = 60;
+const finalStiffnessY = 800;
+const finalDampingY = 60;
 
-const startX = 100;
-
-const initialStiffness = 400;
-const initialDamping = 60;
-
-const finalStiffness = 400;
-const finalDamping = 60;
-
+const startX = -10;
+const startOpacityX = 1;
+const initialStiffnessX = 700;
+const initialDampingX = 25;
+const finalStiffnessX = 700;
+const finalDampingX = 25;
 
 class QuizOptions2 extends Component {
 	
@@ -25,26 +27,26 @@ class QuizOptions2 extends Component {
 			notes = 
 				<StaggeredMotion
 					defaultStyles={[
-						{y: startY, o: startOpacity},
-						{y: startY, o: startOpacity},
-						{y: startY, o: startOpacity},
-						{y: startY, o: startOpacity}
+						{y: startY, o: startOpacityY},
+						{y: startY, o: startOpacityY},
+						{y: startY, o: startOpacityY},
+						{y: startY, o: startOpacityY}
 					]}
 					styles={prevInterpolatedStyles => prevInterpolatedStyles.map((_, i) => {
 						return i === 0
 							? { 
-									y: spring(0, { stiffness: initialStiffness, damping: initialDamping }), 
+									y: spring(0, { stiffness: initialStiffnessY, damping: initialDampingY }), 
 									o: spring(1)
 								}
 							: {
-									y: spring(prevInterpolatedStyles[i - 1].y, { stiffness: finalStiffness, damping: finalDamping }),
+									y: spring(prevInterpolatedStyles[i - 1].y, { stiffness: finalStiffnessY, damping: finalDampingY }),
 									o: spring(prevInterpolatedStyles[i - 1].o)
 								} 
 					})}>
 						{interpolatingStyles =>
 							<div className={'inner-wrapper'}>
 								{interpolatingStyles.map((style, i) => {
-									const ballStyles = {
+									const notesEnterStyles = {
 										width: '4rem',
 										height: '4rem',
 										background: 'linear-gradient(to right, #d69480, #d84315',
@@ -58,7 +60,7 @@ class QuizOptions2 extends Component {
 										color: 'white',
 										fontSize: '1.25em'
 									}
-									return <button style={ballStyles} 
+									return <button style={notesEnterStyles} 
 															key={i}
 															ref={choices[i]} 
 															onClick={this.props.checkChoice.bind(this, choices[i])}
@@ -74,30 +76,30 @@ class QuizOptions2 extends Component {
 					notes = null
 			}
 		
-			if (!this.props.notesEnter) {
+			if (this.props.incorrectNotes) {
 				incorrectNotes =
 						<StaggeredMotion
 							defaultStyles={[
-								{x: startX, o: startOpacity},
-								{x: startX, o: startOpacity},
-								{x: startX, o: startOpacity},
-								{x: startX, o: startOpacity}
+								{x: startX, o: startOpacityX},
+								{x: startX, o: startOpacityX},
+								{x: startX, o: startOpacityX},
+								{x: startX, o: startOpacityX}
 							]}
 							styles={prevInterpolatedStyles => prevInterpolatedStyles.map((_, i) => {
 								return i === 0
 									? { 
-											x: spring(0, { stiffness: initialStiffness, damping: initialDamping }), 
+											x: spring(0, { stiffness: initialStiffnessX, damping: initialDampingX }), 
 											o: spring(1)
 										}
 									: {
-											x: spring(prevInterpolatedStyles[i - 1].x, { stiffness: finalStiffness, damping: finalDamping }),
+											x: spring(prevInterpolatedStyles[i - 1].x, { stiffness: finalStiffnessX, damping: finalDampingX }),
 											o: spring(prevInterpolatedStyles[i - 1].o)
 										} 
 							})}>
 								{interpolatingStyles =>
 									<div className={'inner-wrapper'}>
 										{interpolatingStyles.map((style, i) => {
-											const incorrectChoiceStyles = {
+											const incorrectNotesStyles = {
 												width: '4rem',
 												height: '4rem',
 												background: 'linear-gradient(to right, #d69480, #d84315',
@@ -111,7 +113,7 @@ class QuizOptions2 extends Component {
 												color: 'white',
 												fontSize: '1.25em'
 											}
-											return <button style={incorrectChoiceStyles} 
+											return <button style={incorrectNotesStyles} 
 																	key={i}
 																	ref={choices[i]} 
 																	onClick={this.props.checkChoice.bind(this, choices[i])}
