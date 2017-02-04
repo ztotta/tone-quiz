@@ -35,7 +35,7 @@ class Header extends Component {
 							align='center'
 							width='1'
 						>
-							<h1 style={styles.h1}>ToneQuiz</h1>
+							<h1 style={styles.h1}>Tone Quiz</h1>
 						</Cell>
 					</Grid>
 				</StyleRoot>

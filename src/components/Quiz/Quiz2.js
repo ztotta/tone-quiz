@@ -16,6 +16,9 @@ var notes = [
 	{note: 'b5', freq: 15804}
 ];
 
+const startY = 100;
+const startOpacity = 0;
+
 class Quiz2 extends Component {
 	constructor(props) {
 		super(props);
@@ -27,7 +30,14 @@ class Quiz2 extends Component {
 			firstTry:       true, // if 'true', the user can still gain a point. if 'false', they can still guess for 0 points
 			notes:          notes,
 			numberCorrect:  0,
-			questionNumber: 1
+			questionNumber: 1,
+			divArr: [
+				{y: startY, o: startOpacity},
+				{y: startY, o: startOpacity},
+				{y: startY, o: startOpacity},
+				{y: startY, o: startOpacity}
+			],
+			animate: true
 		};
 	}
 
@@ -60,8 +70,7 @@ class Quiz2 extends Component {
 	}
 	
 	checkChoice(option) {
-		console.log('checkChoice function')
-		console.log(option)
+//		console.log('checkChoice function')
 		// if user chooses correctly, update state accordingly:
 		if (option === this.state.correct) {
 			this.setState({
@@ -69,14 +78,15 @@ class Quiz2 extends Component {
 				correct:  			notes[Math.floor(Math.random() * notes.length)].note,
 				numberCorrect:  this.state.firstTry ? this.state.numberCorrect + 1 : this.state.numberCorrect,
 				firstTry:       true,
-				questionNumber: this.state.questionNumber + 1
+				questionNumber: this.state.questionNumber + 1,
+				animate: false
 			}, function afterSetState() {
 					this.pushChoices();
+					this.setState({ animate: true })
 //					this.state.questionNumber === 2 ? this.context.router.transitionTo('completed-quiz') : console.log('no victory yet')
 //					console.log('setState callback entered')
 //					console.log('numberCorrect: ', this.state.numberCorrect)
 				})
-			
 			this.clearAlert();
 		} else { 							
 			// Alert the user that they missed it & update firstTry:
@@ -97,7 +107,7 @@ class Quiz2 extends Component {
 			<div className={'outer-wrapper'}>
 				<QuizHeader2 note={this.state.correct} alert={this.state.alert} />
 				<ToneGenerator note={this.state.correct} />
-				<QuizOptions2 choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
+				<QuizOptions2 animate={this.state.animate} choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
 				<QuizFooter2 questionNumber={this.state.questionNumber} />
 			</div>
     );

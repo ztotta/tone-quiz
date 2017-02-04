@@ -13,18 +13,27 @@ const finalDamping = 60;
 
 class QuizOptions2 extends Component {
 	
+	constructor(props) {
+		super(props);
+		
+		this.state = {
+			divArr: [ 
+				{y: startY, o: startOpacity},
+				{y: startY, o: startOpacity},
+				{y: startY, o: startOpacity},
+				{y: startY, o: startOpacity}
+			],
+			animate: true
+		}
+	}	
+	
   render() {
 		const choices = this.props.choices.sort()
+		let balls = null;
 		
-    return (
-
-				<StaggeredMotion
-					defaultStyles={[
-						{y: startY, o: startOpacity},
-						{y: startY, o: startOpacity},
-						{y: startY, o: startOpacity},
-						{y: startY, o: startOpacity}
-					]}
+		if (this.props.animate) {
+			balls = <StaggeredMotion
+					defaultStyles={this.state.divArr}
 					styles={prevInterpolatedStyles => prevInterpolatedStyles.map((_, i) => {
 						return i === 0
 							? { 
@@ -58,13 +67,20 @@ class QuizOptions2 extends Component {
 															ref={choices[i]} 
 															onClick={this.props.checkChoice.bind(this, choices[i])}
 												 >
-												 	{choices[i].slice(0,1)}
+													{choices[i].slice(0,1)}
 												 </button>;
 								})}
 							</div>
 						}
 				</StaggeredMotion>
-
+			} else {
+				balls = null;
+			}
+		
+    return (
+			<div>
+				{balls}
+			</div>
     );
   }
 }
