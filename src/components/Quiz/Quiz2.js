@@ -1,37 +1,12 @@
 import React, {Component} from 'react';
-//import { browserHistory, history } from 'react-router';
-var Radium = require('radium');
-var RadiumGrid = require('radium-grid');
-//import { Spring } from 'react-motion';
-const { StyleRoot } = Radium; 
-const { Grid } = RadiumGrid;
-
-import QuizHeader from './Quiz-Header';
+	
 import QuizHeader2 from './Quiz-Header2';
-import QuizOptions from './Quiz-Options';
 import QuizOptions2 from './Quiz-Options2';
-import QuizFooter from './Quiz-Footer/Quiz-Footer';
 import QuizFooter2 from './Quiz-Footer/Quiz-Footer2';
-
-const styles = {
-	styleRoot: {
-		padding: '5px',
-		margin: '0 auto'
-	},
-	grid: {
-		height: '100%'
-	}
-}
+import ToneGenerator from '../../Tone-Generator';
 
 // Assigning random notes for the quiz:
 var notes = [
-	{note: 'c4', freq: 4186},
-	{note: 'd4', freq: 4699},
-	{note: 'e4', freq: 5274},
-	{note: 'f4', freq: 5588},
-	{note: 'g4', freq: 6272},
-	{note: 'a4', freq: 7040},
-	{note: 'b4', freq: 7902},
 	{note: 'c5', freq: 8372},
 	{note: 'd5', freq: 9397},
 	{note: 'e5', freq: 10548},
@@ -41,7 +16,7 @@ var notes = [
 	{note: 'b5', freq: 15804}
 ];
 
-class Quiz extends Component {
+class Quiz2 extends Component {
 	constructor(props) {
 		super(props);
 
@@ -119,15 +94,14 @@ class Quiz extends Component {
 		console.log('correct: ', this.state.correct)
 		
     return (
-			<StyleRoot style={styles.styleRoot}>
-				<Grid style={styles.grid}>
-					<QuizHeader2 note={this.state.correct} alert={this.state.alert} />
-						<QuizOptions2 choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
-					<QuizFooter2 questionNumber={this.state.questionNumber} />
-				</Grid>
-			</StyleRoot>
+			<div className={'outer-wrapper'}>
+				<QuizHeader2 note={this.state.correct} alert={this.state.alert} />
+				<ToneGenerator note={this.props.note} />
+				<QuizOptions2 choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
+				<QuizFooter2 questionNumber={this.state.questionNumber} />
+			</div>
     );
   }
 }
 
-export default Quiz;
+export default Quiz2;

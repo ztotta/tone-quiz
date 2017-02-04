@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
 import { Link } from 'react-router';
-
+//import { Motion, spring } from 'react-motion';
+ 
 const style = {
 	button: {
 		background: 'linear-gradient(to right, #a9a9a9, #777)',
@@ -25,16 +26,16 @@ class StartButton extends Component {
 	
 	render() {
 		return(
-			<Link 
-				to='/taking-quiz'
-				style={style.link}
-			>
-				<button 
-					style={style.button}
+				<Link 
+					to='/taking-quiz'
+					style={style.link}
 				>
-					{this.props.startPhrase}
-				</button>
-			</Link>
+					<button 
+						style={style.button}
+					>
+						{this.props.startPhrase}
+					</button>
+				</Link>
 		)
 	}
 }

@@ -7,9 +7,9 @@ const styles = {
     color: "#045fb4",
 		textAlign: 'center',
     margin: 'auto',
-    height: "auto",
-		width: '100px',
-		borderRadius: '5px',
+    height: "6rem",
+		width: '6rem',
+		borderRadius: '50%',
 		backgroundColor: "white",
 		cursor: 'pointer',
 		':hover': {
@@ -38,13 +38,18 @@ class ToneGenerator extends Component {
   handlePlayToggle() {
     this.setState({
       playing: !this.state.playing,
-    });
+    }, function() {
+			   setTimeout(() => {
+					 this.setState({
+						 playing: false
+					 })
+				 }, 2000)
+			 });
   }
   
   render() {
     return (
-      <div style={styles.div}>
-       
+      <div className={'inner-wrapper play-button'}>
         <Song
           playing={this.state.playing}
           tempo={90}

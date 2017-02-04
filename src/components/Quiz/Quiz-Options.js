@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 //import { Link } from 'react-router';
 var RadiumGrid = require('radium-grid');
 const { Cell, Grid } = RadiumGrid;
+//import { Spring } from 'react-motion';
 
 const styles = {
 	button: {
@@ -44,36 +45,36 @@ class QuizOptions extends Component {
 		
     return (
 			<Grid style={styles.grid}>
-				{this.props.choices.length ? (
-					this.props.choices.sort().map(option => {
-						return(
+					{this.props.choices.length ? (
+						this.props.choices.sort().map(option => {
+							return(
+								<Cell 
+									style={styles.cellHeader}
+									verticalAlign="top"
+									width="1"
+									key={option + Math.random()}
+								>
+									<button 
+										onClick={this.props.checkChoice.bind(this, option)} 
+										style={styles.button}
+									>
+										{option}
+									</button>
+								</Cell>
+							)})
+						) : (
 							<Cell 
 								style={styles.cellHeader}
 								verticalAlign="top"
 								width="1"
-								key={option + Math.random()}
 							>
 								<button 
-									onClick={this.props.checkChoice.bind(this, option)} 
 									style={styles.button}
 								>
-									{true ? option : option}
+									Hello
 								</button>
 							</Cell>
-						)})
-					) : (
-						<Cell 
-							style={styles.cellHeader}
-							verticalAlign="top"
-							width="1"
-						>
-							<button 
-								style={styles.button}
-							>
-								Hello
-							</button>
-						</Cell>
-				)}
+					)}
 			</Grid>
     );
   }

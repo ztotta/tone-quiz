@@ -34,9 +34,8 @@ class QuizHeader extends Component {
 				verticalAlign="top"
 				width="1"
 			>
-				<h3 style={{margin: '5px 0'}}>Choose the correct note:</h3>
+				<h3 style={{margin: '5px 0', minWidth: '230px'}}>{this.props.alert}</h3>
 				<ToneGenerator note={this.props.note} />
-				<h3 style={{margin: '0 auto'}}>{this.props.alert}</h3>
 			</Cell>
     );
   }
