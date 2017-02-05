@@ -22,7 +22,7 @@ const styles = {
 	}
 }
 
-class QuizFooter extends Component {
+class QuizProgress extends Component {
 	
   render() {
     return (
@@ -33,4 +33,4 @@ class QuizFooter extends Component {
   }
 }
 
-export default QuizFooter;
+export default QuizProgress;

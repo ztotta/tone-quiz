@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import { router } from 'react-router';
 	
-import QuizHeader2   from './Quiz-Header2';
-import QuizHeader3   from './Quiz-Header3';
+import UserMessage   from './User-Message';
 import QuizOptions2  from './Quiz-Options/Quiz-Options2';
-import QuizFooter2   from './Quiz-Footer/Quiz-Footer2';
+import QuizProgress  from './Quiz-Progress/Quiz-Progress';
 import ToneGenerator from '../../Tone-Generator';
 
 var notes = [
@@ -97,11 +95,10 @@ class Quiz2 extends Component {
 		
     return (
 			<div className={'outer-wrapper'}>
-				{/*<QuizHeader2 note={this.state.correct} userMessage={this.state.userMessage} />*/}
-				<QuizHeader3 userMessage={this.state.userMessage} incorrectNotes={this.state.incorrectNotes} notesEnter={this.state.notesEnter} />
+				<QuizProgress questionNumber={this.state.questionNumber} />
 				<ToneGenerator note={this.state.correct} />
+				<UserMessage userMessage={this.state.userMessage} incorrectNotes={this.state.incorrectNotes} notesEnter={this.state.notesEnter} />
 				<QuizOptions2 incorrectNotes={this.state.incorrectNotes} notesEnter={this.state.notesEnter} choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
-				<QuizFooter2 questionNumber={this.state.questionNumber} />
 			</div>
     );
   }

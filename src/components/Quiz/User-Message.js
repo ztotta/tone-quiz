@@ -8,13 +8,12 @@ const initialDampingY = 60;
 const finalStiffnessY = 400;
 const finalDampingY = 60;
 
-class QuizHeader3 extends Component {
+class UserMessage extends Component {
 	
   render() {
 		let userMessage = null;
 		
 		if (this.props.notesEnter || this.props.incorrectNotes) {
-			console.log('entered if on userMessage')
 			userMessage = 
 				<StaggeredMotion
 					defaultStyles={[
@@ -72,4 +71,4 @@ class QuizHeader3 extends Component {
   }
 }
 
-export default QuizHeader3;
+export default UserMessage;
