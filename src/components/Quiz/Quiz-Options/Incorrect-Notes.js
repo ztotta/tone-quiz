@@ -35,7 +35,7 @@ class IncorrectNotes extends Component {
 										} 
 							})}>
 								{interpolatingStyles =>
-									<div className={'inner-wrapper'}>
+									<div className={'inner-wrapper notes'}>
 										{interpolatingStyles.map((style, i) => {
 											const incorrectNotesStyles = {
 												width: '4rem',
@@ -67,7 +67,7 @@ class IncorrectNotes extends Component {
 			}
 		
     return (
-			<div>
+			<div className={'inner-wrapper'}>
 				{incorrectNotes}
 			</div>
     );

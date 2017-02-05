@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import { router } from 'react-router';
 	
-import QuizHeader2 from './Quiz-Header2';
-import QuizOptions2 from './Quiz-Options/Quiz-Options2';
-import QuizFooter2 from './Quiz-Footer/Quiz-Footer2';
+import QuizHeader2   from './Quiz-Header2';
+import QuizHeader3   from './Quiz-Header3';
+import QuizOptions2  from './Quiz-Options/Quiz-Options2';
+import QuizFooter2   from './Quiz-Footer/Quiz-Footer2';
 import ToneGenerator from '../../Tone-Generator';
 
 var notes = [
@@ -28,7 +29,7 @@ class Quiz2 extends Component {
 			numberCorrect:   0,
 			questionNumber:  1,
 			notesEnter:      true,
-			incorrectNotes:   false
+			incorrectNotes:  false
 		};
 	}
 
@@ -55,27 +56,27 @@ class Quiz2 extends Component {
 		setTimeout(() => {
 			this.setState({ userMessage: 'Choose the correct note:' });
 		}, 2000)
-//		router.transitionTo('/')
 	}
 	
 	checkChoice(option) {
 		// if user chooses correctly, update state accordingly:
 		if (option === this.state.correct) {
 			this.setState({
-				userMessage:          'Correct!',	
+				userMessage:    'Correct!',	
 				correct:  			notes[Math.floor(Math.random() * notes.length)].note,
 				numberCorrect:  this.state.firstTry ? this.state.numberCorrect + 1 : this.state.numberCorrect,
 				firstTry:       true,
 				questionNumber: this.state.questionNumber + 1,
 				notesEnter:     false,     // reset the QuizOptions note enter animation
-				incorrectNotes:  false
+				incorrectNotes: false
 			}, function afterSetState() {
-					if (this.state.questionNumber > 10) { console.log(`switch to finished-quiz now. Got ${this.state.numberCorrect} right`) }
-					this.pushChoices();
-					this.setState({ 
-						notesEnter: true, 		 // triggers rendering of QuizOptions noteEnter animation
-					}) 
-				})
+						if (this.state.questionNumber > 10) { console.log(`switch to finished-quiz now. Got ${this.state.numberCorrect} right`) }
+						this.pushChoices();
+						this.setState({ 
+							notesEnter: true, 	 // triggers rendering of QuizOptions noteEnter animation
+						}) 
+					} 
+				) // this.setState()
 			this.clearUserMessage();
 		} else { 							
 			// Alert the user that they chose incorrectly & update firstTry:
@@ -96,7 +97,8 @@ class Quiz2 extends Component {
 		
     return (
 			<div className={'outer-wrapper'}>
-				<QuizHeader2 note={this.state.correct} userMessage={this.state.userMessage} />
+				{/*<QuizHeader2 note={this.state.correct} userMessage={this.state.userMessage} />*/}
+				<QuizHeader3 userMessage={this.state.userMessage} incorrectNotes={this.state.incorrectNotes} notesEnter={this.state.notesEnter} />
 				<ToneGenerator note={this.state.correct} />
 				<QuizOptions2 incorrectNotes={this.state.incorrectNotes} notesEnter={this.state.notesEnter} choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
 				<QuizFooter2 questionNumber={this.state.questionNumber} />

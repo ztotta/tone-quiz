@@ -1,26 +1,23 @@
 import React, {Component} from 'react';
 import { StaggeredMotion, spring } from 'react-motion';
 
-const startY = 50;
-const startOpacityY = .5;
-const initialStiffnessY = 800;
+const startY = 0;
+const startOpacityY = .7;
+const initialStiffnessY = 400;
 const initialDampingY = 60;
-const finalStiffnessY = 800;
+const finalStiffnessY = 400;
 const finalDampingY = 60;
 
-class NotesEnter extends Component {
+class QuizHeader3 extends Component {
 	
   render() {
-		const choices  = this.props.choices.sort()
-		let notesEnter = null;
+		let userMessage = null;
 		
-		if (this.props.notesEnter) {
-			notesEnter = 
+		if (this.props.notesEnter || this.props.incorrectNotes) {
+			console.log('entered if on userMessage')
+			userMessage = 
 				<StaggeredMotion
 					defaultStyles={[
-						{y: startY, o: startOpacityY},
-						{y: startY, o: startOpacityY},
-						{y: startY, o: startOpacityY},
 						{y: startY, o: startOpacityY}
 					]}
 					styles={prevInterpolatedStyles => prevInterpolatedStyles.map((_, i) => {
@@ -35,43 +32,44 @@ class NotesEnter extends Component {
 								} 
 					})}>
 						{interpolatingStyles =>
-							<div className={'inner-wrapper notes'}>
+							<div className={'inner-wrapper'}>
 								{interpolatingStyles.map((style, i) => {
-									const notesEnterStyles = {
-										width: '4rem',
+									const userMessageStyles = {
+										width: '20rem',
 										height: '4rem',
+										boxShadow: '0px 1px 1px black',
 										background: 'linear-gradient(to right, #d69480, #d84315',
-										borderRadius: '50%',
 										WebkitTransform: `translate3d(0, ${style.y}px, 0)`,
+										borderRadius: '15px',
 										opacity: style.o,
-										cursor: 'pointer',
 										display: 'flex',
 										justifyContent: 'center',
 										alignItems: 'center',
 										color: 'white',
 										fontSize: '1.25em'
 									}
-									return <button style={notesEnterStyles} 
-															key={i}
-															ref={choices[i]} 
-															onClick={this.props.checkChoice.bind(this, choices[i])}
-												 >
-													{choices[i].slice(0,1)}
-												 </button>;
+									return <h2 
+												  className={'user-message'}
+													style={userMessageStyles}
+													key={this.props.userMessage}
+													>
+														{this.props.userMessage}
+													</h2>
 								})}
 							</div>
 						}
 				</StaggeredMotion>
 			} else {
-					notesEnter = null
+					console.log('entered else on animation')
+					userMessage = null
 			}
 		
     return (
 			<div className={'inner-wrapper'}>
-				{notesEnter}
+				{userMessage}
 			</div>
     );
   }
 }
 
-export default NotesEnter;
+export default QuizHeader3;
