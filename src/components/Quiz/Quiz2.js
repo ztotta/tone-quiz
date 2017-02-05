@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+import { router } from 'react-router';
 	
 import QuizHeader2 from './Quiz-Header2';
-import QuizOptions2 from './Quiz-Options2';
+import QuizOptions2 from './Quiz-Options/Quiz-Options2';
 import QuizFooter2 from './Quiz-Footer/Quiz-Footer2';
 import ToneGenerator from '../../Tone-Generator';
 
@@ -54,6 +55,7 @@ class Quiz2 extends Component {
 		setTimeout(() => {
 			this.setState({ userMessage: 'Choose the correct note:' });
 		}, 2000)
+//		router.transitionTo('/')
 	}
 	
 	checkChoice(option) {
@@ -68,6 +70,7 @@ class Quiz2 extends Component {
 				notesEnter:     false,     // reset the QuizOptions note enter animation
 				incorrectNotes:  false
 			}, function afterSetState() {
+					if (this.state.questionNumber > 10) { console.log(`switch to finished-quiz now. Got ${this.state.numberCorrect} right`) }
 					this.pushChoices();
 					this.setState({ 
 						notesEnter: true, 		 // triggers rendering of QuizOptions noteEnter animation

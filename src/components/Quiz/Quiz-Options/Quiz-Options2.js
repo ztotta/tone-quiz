@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
 import { StaggeredMotion, spring } from 'react-motion';
 
-const startY = 100;
-const startOpacityY = 0;
-const initialStiffnessY = 800;
-const initialDampingY = 60;
-const finalStiffnessY = 800;
-const finalDampingY = 60;
+import NotesEnter from './Notes-Enter';
+import IncorrectNotes from './Incorrect-Notes';
 
 const startX = -10;
 const startOpacityX = 1;
@@ -19,62 +15,7 @@ class QuizOptions2 extends Component {
 	
   render() {
 		const choices      = this.props.choices.sort()
-		let notes          = null;
 		let incorrectNotes = null;
-		
-		if (this.props.notesEnter) {
-			console.log('entered if on animation')
-			notes = 
-				<StaggeredMotion
-					defaultStyles={[
-						{y: startY, o: startOpacityY},
-						{y: startY, o: startOpacityY},
-						{y: startY, o: startOpacityY},
-						{y: startY, o: startOpacityY}
-					]}
-					styles={prevInterpolatedStyles => prevInterpolatedStyles.map((_, i) => {
-						return i === 0
-							? { 
-									y: spring(0, { stiffness: initialStiffnessY, damping: initialDampingY }), 
-									o: spring(1)
-								}
-							: {
-									y: spring(prevInterpolatedStyles[i - 1].y, { stiffness: finalStiffnessY, damping: finalDampingY }),
-									o: spring(prevInterpolatedStyles[i - 1].o)
-								} 
-					})}>
-						{interpolatingStyles =>
-							<div className={'inner-wrapper'}>
-								{interpolatingStyles.map((style, i) => {
-									const notesEnterStyles = {
-										width: '4rem',
-										height: '4rem',
-										background: 'linear-gradient(to right, #d69480, #d84315',
-										borderRadius: '50%',
-										WebkitTransform: `translate3d(0, ${style.y}px, 0)`,
-										opacity: style.o,
-										cursor: 'pointer',
-										display: 'flex',
-										justifyContent: 'center',
-										alignItems: 'center',
-										color: 'white',
-										fontSize: '1.25em'
-									}
-									return <button style={notesEnterStyles} 
-															key={i}
-															ref={choices[i]} 
-															onClick={this.props.checkChoice.bind(this, choices[i])}
-												 >
-													{choices[i].slice(0,1)}
-												 </button>;
-								})}
-							</div>
-						}
-				</StaggeredMotion>
-			} else {
-					console.log('entered else on animation')
-					notes = null
-			}
 		
 			if (this.props.incorrectNotes) {
 				incorrectNotes =
@@ -130,8 +71,8 @@ class QuizOptions2 extends Component {
 		
     return (
 			<div>
-				{notes}
-				{incorrectNotes}
+				<NotesEnter  notesEnter={this.props.notesEnter} choices={this.props.choices} checkChoice={this.props.checkChoice} />
+				<IncorrectNotes  incorrectNotes={this.props.incorrectNotes} choices={this.props.choices} checkChoice={this.props.checkChoice} />
 			</div>
     );
   }
