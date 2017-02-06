@@ -4,9 +4,8 @@ import { Link } from 'react-router';
  
 const style = {
 	button: {
-		background: 'linear-gradient(to right, #a9a9a9, #777)',
-		border: '3px solid white',
-		borderRadius: 4,
+		background: '#eeaa7b',
+		borderRadius: '15px',
 		color: '#fff',
 		width: '100%',
 		height: '50px',
