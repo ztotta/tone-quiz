@@ -9,7 +9,6 @@ import StartButton from '../components/Start-Button';
 const styles = {
 	cell: {
     boxSizing: "border-box",
-    color: "#045fb4",
 		textAlign: 'center',
     padding: "1rem",
     height: "auto",
@@ -27,7 +26,8 @@ const styles = {
 		width: '100%'
 	},
 	h1: {
-		color: 'white'
+		color: '#07889b',
+		textAlign: 'center'
 	}
 }
 
@@ -45,13 +45,13 @@ class Welcome extends Component {
 						align="center"
 						width="1"
 					>
-						<h1 style={styles.h1}>Welcome</h1>
+						<h1 style={styles.h1}>PRESS 'PLAY' AND CHOOSE THE CORRECT NOTE</h1>
 					</Cell>
 					<Cell 
 						style={styles.cell}
 						verticalAlign="top"
 					>
-						<StartButton startPhrase={'Start!'} />
+						<StartButton startPhrase={'START'} />
 					</Cell>
 				</Grid>
 			</StyleRoot>

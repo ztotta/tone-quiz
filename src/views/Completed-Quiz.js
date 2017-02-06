@@ -9,7 +9,6 @@ import StartButton from '../components/Start-Button';
 const styles = {
 	cell: {
     boxSizing: "border-box",
-    color: "#045fb4",
 		textAlign: 'center',
     padding: "1rem",
     height: "auto",
@@ -25,6 +24,11 @@ const styles = {
 	grid: {
 		height: '100%',
 		width: '100%'
+	},
+	h1: {
+		fontFamily: '"Roboto Mono", monospace',
+		color: '#07889b',
+		textAlign: 'center'
 	}
 }
 
@@ -42,16 +46,14 @@ class Welcome extends Component {
 						align="center"
 						width="1"
 					>
-						<h1>You did it!</h1>
-						<br/>
-						<h3>You answered 7/10 correctly.</h3>
+						<h1 className={'user-message'} style={styles.h1}>You answered 7/10 correctly.</h1>
 						
 					</Cell>
 					<Cell 
 						style={styles.cell}
 						verticalAlign="top"
 					>
-						<StartButton startPhrase={'Want to try again?'} />
+						<StartButton startPhrase={'RETAKE QUIZ'} />
 					</Cell>
 				</Grid>
 			</StyleRoot>

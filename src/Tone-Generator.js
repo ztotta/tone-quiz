@@ -73,7 +73,7 @@ class ToneGenerator extends Component {
           onClick={this.handlePlayToggle}
           style={styles.button}
         >
-          {this.state.playing ? 'Stop' : 'PLAY'}
+          {this.state.playing ? 'STOP' : 'PLAY'}
         </button>
       </div>
     );

@@ -34,7 +34,7 @@ class UserMessage extends Component {
 							<div className={'inner-wrapper'}>
 								{interpolatingStyles.map((style, i) => {
 									const userMessageStyles = {
-										width: '20rem',
+										width: '90%',
 										height: '4rem',
 										boxShadow: '0px 1px 1px black',
 //										background: 'linear-gradient(to right, #d84315, #b8cbce',
@@ -46,7 +46,8 @@ class UserMessage extends Component {
 										justifyContent: 'center',
 										alignItems: 'center',
 										color: 'white',
-										fontSize: '1.25em'
+										fontSize: '1.25em',
+										margin: 'auto'
 									}
 									return <h2 
 												  className={'user-message'}

@@ -5,7 +5,9 @@ import { Link } from 'react-router';
 const style = {
 	button: {
 		background: '#eeaa7b',
+		fontFamily: '"Roboto Mono", monospace',
 		borderRadius: '15px',
+		fontSize: '1.25em',
 		color: '#fff',
 		width: '100%',
 		height: '50px',

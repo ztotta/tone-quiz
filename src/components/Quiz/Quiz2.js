@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 	
 import UserMessage   from './User-Message';
 import QuizOptions2  from './Quiz-Options/Quiz-Options2';
+import QuizOptions3  from './Quiz-Options/Quiz-Options3';
 import QuizProgress  from './Quiz-Progress/Quiz-Progress';
 import ToneGenerator from '../../Tone-Generator';
 
@@ -98,7 +99,7 @@ class Quiz2 extends Component {
 				<QuizProgress questionNumber={this.state.questionNumber} />
 				<ToneGenerator note={this.state.correct} />
 				<UserMessage userMessage={this.state.userMessage} incorrectNotes={this.state.incorrectNotes} notesEnter={this.state.notesEnter} />
-				<QuizOptions2 incorrectNotes={this.state.incorrectNotes} notesEnter={this.state.notesEnter} choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
+				<QuizOptions3 incorrectNotes={this.state.incorrectNotes} notesEnter={this.state.notesEnter} choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
 			</div>
     );
   }
