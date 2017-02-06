@@ -1,3 +1,8 @@
+body > * {
+/*	font-family: 'Barrio', cursive !important;*/
+	font-family: 'Roboto Mono', monospace;
+}
+
 .App-container {
 	position: absolute;
 	top: 105px;
@@ -49,6 +54,10 @@ button:active {
 	background: #c58c65 !important;
 }
 
+h1 {
+	font-family: "Roboto Mono", monospace;
+}
+
 .inner-wrapper {
 	display: flex;
 	justify-content: space-between;
@@ -65,6 +74,7 @@ button:active {
 
 .inner-wrapper.progress {
 	height: 50%;
+	color: #07889b;
 }
 
 .outer-wrapper {	

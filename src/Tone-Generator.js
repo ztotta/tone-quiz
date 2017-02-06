@@ -10,6 +10,7 @@ const styles = {
     height: "6rem",
 		width: '6rem',
 		borderRadius: '50%',
+		fontFamily: '"Roboto Mono", monospace',
 //		background: "linear-gradient(to right, #d69480, rgb(216, 67, 21))",
 		background: '#eeaa7b',
 		cursor: 'pointer',
@@ -72,7 +73,7 @@ class ToneGenerator extends Component {
           onClick={this.handlePlayToggle}
           style={styles.button}
         >
-          {this.state.playing ? 'Stop' : 'Play'}
+          {this.state.playing ? 'Stop' : 'PLAY'}
         </button>
       </div>
     );

@@ -42,6 +42,7 @@ class NotesEnter extends Component {
 										height: '4rem',
 //										background: 'linear-gradient(to right, #d69480, #d84315',
 										background: '#eeaa7b',
+										fontFamily: '"Roboto Mono", monospace',
 										borderRadius: '50%',
 										WebkitTransform: `translate3d(0, ${style.y}px, 0)`,
 										opacity: style.o,
@@ -57,7 +58,7 @@ class NotesEnter extends Component {
 															ref={choices[i]} 
 															onClick={this.props.checkChoice.bind(this, choices[i])}
 												 >
-													{choices[i].slice(0,1)}
+													{choices[i].slice(0,1).toUpperCase()}
 												 </button>;
 								})}
 							</div>

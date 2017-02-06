@@ -53,7 +53,7 @@ class UserMessage extends Component {
 													style={userMessageStyles}
 													key={this.props.userMessage}
 													>
-														{this.props.userMessage}
+														{this.props.userMessage.toUpperCase()}
 													</h2>
 								})}
 							</div>
