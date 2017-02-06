@@ -9,8 +9,9 @@ const styles = {
     margin: 'auto',
     height: "6rem",
 		width: '6rem',
-		borderRadius: '15%',
-		background: "linear-gradient(to right, #d69480, rgb(216, 67, 21))",
+		borderRadius: '50%',
+//		background: "linear-gradient(to right, #d69480, rgb(216, 67, 21))",
+		background: '#eeaa7b',
 		cursor: 'pointer',
 		fontSize: '1.25em'
 	},

@@ -40,7 +40,8 @@ class NotesEnter extends Component {
 									const notesEnterStyles = {
 										width: '4rem',
 										height: '4rem',
-										background: 'linear-gradient(to right, #d69480, #d84315',
+//										background: 'linear-gradient(to right, #d69480, #d84315',
+										background: '#eeaa7b',
 										borderRadius: '50%',
 										WebkitTransform: `translate3d(0, ${style.y}px, 0)`,
 										opacity: style.o,
