@@ -9,20 +9,18 @@ class ContainerMain extends Component {
 	render() {
 	
 		let items = [
-			<SidebarItem><Link to='/'>HOME</Link></SidebarItem>,
-			<SidebarItem><Link to='/taking-quiz'>START QUIZ</Link></SidebarItem>,
-			<SidebarItem><Link to='/completed-quiz/7'>COMPLETED QUIZ</Link></SidebarItem>
+			<Link to='/'><SidebarItem>HOME</SidebarItem></Link>,
+			<Link to='/taking-quiz'><SidebarItem>QUIZ</SidebarItem></Link>,
+			<Link to='/completed-quiz/7'><SidebarItem>RESULTS (temp)</SidebarItem></Link>
 		];
 		
     return (
 			<div>
 				<Sidebar content={items} 
-						background={'white'} 
-						breakPoint={980}
+						background={'#e0f7fa'} 
+						breakPoint={2000}
 						toggleIconColor={'white'}
-						activeHightlight={'#045fb4'}
 						width={200}
-						color={'#90CAFF'}
 				>
 					<ContainerApp>
 						{this.props.children}

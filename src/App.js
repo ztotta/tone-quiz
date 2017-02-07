@@ -16,7 +16,6 @@ class App extends Component {
 					<IndexRoute component={Welcome} />
 					<Route path='taking-quiz' component={TakingQuiz} />
 					<Route path='completed-quiz/:id' component={CompletedQuiz} />
-					<Route path='motion-test' component={MotionTest} />
 				</Route>
 			</Router>
     );

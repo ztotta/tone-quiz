@@ -1,5 +1,14 @@
+a > * {
+	color: #07889b;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 body > * {
-/*	font-family: 'Barrio', cursive !important;*/
 	font-family: 'Roboto Mono', monospace;
 }
 
