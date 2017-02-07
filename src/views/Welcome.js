@@ -45,13 +45,13 @@ class Welcome extends Component {
 						align="center"
 						width="1"
 					>
-						<h1 style={styles.h1}>PRESS 'PLAY' AND CHOOSE THE CORRECT NOTE</h1>
+						<h1 style={styles.h1}>INSTRUCTIONS: <hr/> press 'PLAY' and choose the correct note</h1>
 					</Cell>
 					<Cell 
 						style={styles.cell}
 						verticalAlign="top"
 					>
-						<StartButton startPhrase={'START'} />
+						<StartButton startPhrase={'BEGIN QUIZ'} />
 					</Cell>
 				</Grid>
 			</StyleRoot>
