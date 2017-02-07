@@ -1,6 +1,5 @@
 import React, { Component }  from 'react';
 import { Link } from 'react-router';
-//import { Motion, spring } from 'react-motion';
  
 const style = {
 	button: {
@@ -19,7 +18,7 @@ const style = {
 	},
 	link: {
 		width: '100%',
-		margin: 'o auto'
+		margin: '0 auto'
 	}
 }
 

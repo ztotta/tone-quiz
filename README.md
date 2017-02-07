@@ -1,4 +1,5 @@
-To do:
-- Quiz2 => this.state.userMessage/clearMessage() is buggy, relying on setTimeout, etc.
-- Design => 
-	- Progress => create progress border around circle
+- Make README
+
+- refactor out the radium-grid bullshit => Header, Completed-Quiz, Welcome
+--- consider refactoring styles in general
+

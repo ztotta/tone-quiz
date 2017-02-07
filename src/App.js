@@ -4,7 +4,6 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import                    './App.css';
 import CompletedQuiz from './views/Completed-Quiz';
 import ContainerMain from './containers/Container-Main';
-import MotionTest    from './views/Motion-Test';
 import TakingQuiz    from './views/Taking-Quiz';
 import Welcome       from './views/Welcome';
 

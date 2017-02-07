@@ -109,8 +109,6 @@ class Quiz extends Component {
 	}
 	
   render() {   
-		console.log('correct: ', this.state.correct)
-		
     return (
 			<div className={'outer-wrapper'}>
 				<QuizProgress questionNumber={this.state.questionNumber} />

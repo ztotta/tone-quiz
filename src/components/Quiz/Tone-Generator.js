@@ -11,14 +11,9 @@ const styles = {
 		width: '6rem',
 		borderRadius: '50%',
 		fontFamily: '"Roboto Mono", monospace',
-//		background: "linear-gradient(to right, #d69480, rgb(216, 67, 21))",
 		background: '#eeaa7b',
 		cursor: 'pointer',
 		fontSize: '1.25em'
-	},
-	div: {
-		marginBottom: '5px',
-		height: 'auto'
 	}
 }
 
@@ -43,7 +38,7 @@ class ToneGenerator extends Component {
 					 this.setState({
 						 playing: false
 					 })
-				 }, 2000)
+				 }, 1500)
 			 });
   }
   

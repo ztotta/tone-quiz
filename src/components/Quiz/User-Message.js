@@ -50,7 +50,6 @@ class UserMessage extends Component {
 										margin: 'auto'
 									}
 									return <h2 
-												  className={'user-message'}
 													style={userMessageStyles}
 													key={this.props.userMessage}
 													>
