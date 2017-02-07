@@ -1,10 +1,9 @@
 import React, {Component, PropTypes} from 'react';
-import { history } from 'react-router';
 	
 import UserMessage   from './User-Message';
-import QuizOptions3  from './Quiz-Options/Quiz-Options3';
-import QuizProgress  from './Quiz-Progress/Quiz-Progress';
-import ToneGenerator from '../../Tone-Generator';
+import QuizOptions   from './Quiz-Options';
+import QuizProgress  from './Quiz-Progress';
+import ToneGenerator from './Tone-Generator';
 
 var notes = [
 	{note: 'c5', freq: 8372},
@@ -16,7 +15,7 @@ var notes = [
 	{note: 'b5', freq: 15804}
 ];
 
-class Quiz2 extends Component {
+class Quiz extends Component {
 	static contextTypes = {
 		router: PropTypes.object
 	}
@@ -60,7 +59,7 @@ class Quiz2 extends Component {
 	// Reroutes to the completed quiz page:
 	toCompletedQuiz = () => {
 		console.log('entered reroute()');
-		if (this.state.questionNumber > 3) this.context.router.push(`/completed-quiz/${this.state.numberCorrect}`)
+		if (this.state.questionNumber > 10) this.context.router.push(`/completed-quiz/${this.state.numberCorrect}`)
 	}
 	
 	// Reset message to the user:
@@ -109,7 +108,6 @@ class Quiz2 extends Component {
 		}
 	}
 	
-	
   render() {   
 		console.log('correct: ', this.state.correct)
 		
@@ -118,10 +116,10 @@ class Quiz2 extends Component {
 				<QuizProgress questionNumber={this.state.questionNumber} />
 				<ToneGenerator note={this.state.correct} />
 				<UserMessage userMessage={this.state.userMessage} incorrectNotes={this.state.incorrectNotes} notesEnter={this.state.notesEnter} />
-				<QuizOptions3 incorrectNotes={this.state.incorrectNotes} notesEnter={this.state.notesEnter} choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
+				<QuizOptions incorrectNotes={this.state.incorrectNotes} notesEnter={this.state.notesEnter} choices={this.state.choices} checkChoice={this.checkChoice.bind(this)} questionNumber={this.state.questionNumber} />
 			</div>
     );
   }
 }
 
-export default Quiz2;
+export default Quiz;

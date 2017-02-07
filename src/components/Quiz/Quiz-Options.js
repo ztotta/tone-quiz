@@ -17,13 +17,14 @@ const initialDampingX = 25;
 const finalStiffnessX = 700;
 const finalDampingX = 25;
 
-class QuizOptions3 extends Component {
+class QuizOptions extends Component {
 	
   render() {
 		const choices      = this.props.choices.sort()
 		let notesEnter     = null;
 		let incorrectNotes = null;
 		
+		// notesEnter animation:
 		if (this.props.notesEnter) {
 			notesEnter = 
 				<StaggeredMotion
@@ -78,6 +79,7 @@ class QuizOptions3 extends Component {
 				notesEnter = null
 		}
 
+		// incorrectNotes animation:
 		if (this.props.incorrectNotes) {
 			incorrectNotes =
 				<StaggeredMotion
@@ -141,4 +143,4 @@ class QuizOptions3 extends Component {
   }
 }
 
-export default QuizOptions3;
+export default QuizOptions;

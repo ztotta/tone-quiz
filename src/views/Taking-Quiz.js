@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 
-import Quiz2 from '../components/Quiz/Quiz2';
+import Quiz from '../components/Quiz/Quiz';
 
 class TakingQuiz extends Component {
   render() {
     return (
-			<Quiz2 />
+			<Quiz />
     );
   }
 }
