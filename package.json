@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "gh-pages": "^0.12.0",
     "react-scripts": "0.8.5"
   },
+  "homepage": "https://ztotta.github.io/tone-quiz",
   "dependencies": {
     "radium": "^0.18.1",
     "radium-grid": "^2.0.3",
@@ -19,6 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+		"deploy": "npm run build&&gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
