@@ -46,7 +46,7 @@ class Welcome extends Component {
 						align="center"
 						width="1"
 					>
-						<h1 className={'user-message'} style={styles.h1}>WELL LOOKIE THERE! <hr/> You answered 7/10 correctly</h1>
+						<h1 className={'user-message'} style={styles.h1}>WELL LOOKIE THERE! <hr/> You answered {this.props.params.id}/10 correctly</h1>
 						
 					</Cell>
 					<Cell 

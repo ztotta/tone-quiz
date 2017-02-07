@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
+import { history } from 'react-router';
 	
 import UserMessage   from './User-Message';
-import QuizOptions2  from './Quiz-Options/Quiz-Options2';
 import QuizOptions3  from './Quiz-Options/Quiz-Options3';
 import QuizProgress  from './Quiz-Progress/Quiz-Progress';
 import ToneGenerator from '../../Tone-Generator';
@@ -17,6 +17,10 @@ var notes = [
 ];
 
 class Quiz2 extends Component {
+	static contextTypes = {
+		router: PropTypes.object
+	}
+	
 	constructor(props) {
 		super(props);
 
@@ -53,10 +57,21 @@ class Quiz2 extends Component {
 		this.setState({ choices:  choiceArr}) // update this.state.choices with the new set of notes
 	}
 	
+	// Reroutes to the completed quiz page:
+	toCompletedQuiz = () => {
+		console.log('entered reroute()');
+		if (this.state.questionNumber > 3) this.context.router.push(`/completed-quiz/${this.state.numberCorrect}`)
+	}
+	
 	// Reset message to the user:
 	clearUserMessage() {
 		setTimeout(() => {
-			this.setState({ userMessage: 'Choose the correct note' });
+			this.setState({ 
+				userMessage: 'Choose the correct note'    // resets the message to the user
+			}, () => {
+				// check to see if the user should be rerouted via toCompletedQuiz function:
+				this.toCompletedQuiz(); 
+			});
 		}, 2000)
 	}
 	
@@ -71,14 +86,14 @@ class Quiz2 extends Component {
 				questionNumber: this.state.questionNumber + 1,
 				notesEnter:     false,      // reset the QuizOptions note enter animation
 				incorrectNotes: false
-			}, function afterSetState() {
-						if (this.state.questionNumber > 10) { console.log(`switch to finished-quiz now. Got ${this.state.numberCorrect} right`) }
+			}, () => {
 						this.pushChoices();
 						this.setState({ 
 							notesEnter: true, 	  // triggers rendering of QuizOptions noteEnter animation
 						}) 
 					} 
-				) // this.setState()
+				)
+			// Reset the user message:
 			this.clearUserMessage();
 		} else { 							
 			// Alert the user that they chose incorrectly & update firstTry:
@@ -87,12 +102,13 @@ class Quiz2 extends Component {
 				firstTry:       false,      // prevents user from earning points after choosing incorrectly
 				notesEnter:     false,      // removes notesEnter QuizOptions
 				incorrectNotes: false       // resets incorrectNotes QuizOptions in case of multiple incorrect choices
-			}, function() {
-				this.clearUserMessage();
+			}, () => {
+				this.clearUserMessage();    // reset the user message
 				this.setState({ incorrectNotes: true }) // triggers rendering of incorrectNotes QuizOptions
 			})
 		}
 	}
+	
 	
   render() {   
 		console.log('correct: ', this.state.correct)
