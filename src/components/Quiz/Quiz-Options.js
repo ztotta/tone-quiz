@@ -51,7 +51,6 @@ class QuizOptions extends Component {
 									const notesEnterStyles = {
 										width: '4rem',
 										height: '4rem',
-//										background: 'linear-gradient(to right, #d69480, #d84315',
 										background: '#eeaa7b',
 										fontFamily: '"Roboto Mono", monospace',
 										borderRadius: '50%',
@@ -106,7 +105,6 @@ class QuizOptions extends Component {
 									const incorrectNotesStyles = {
 										width: '4rem',
 										height: '4rem',
-//												background: 'linear-gradient(to right, #d69480, #d84315',
 										background: '#eeaa7b',
 										fontFamily: '"Roboto Mono", monospace',
 										borderRadius: '50%',

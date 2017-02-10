@@ -43,17 +43,16 @@ class Quiz extends Component {
 	// Update this.state.choices with new set of correct/incorrect options to be populated:
 	pushChoices() {
 		var noteList = notes.filter(el => el.note !== this.state.correct) // create a filtered list w/o the correct note
-		var choiceArr = []; // will hold the notes to be set to this.state.choices
+		var choiceArr = [];                                       // will hold the notes to be set to this.state.choices
 
 		// pull random notes from noteList w/o repeating:
 		var noteA = noteList[Math.floor(Math.random() * 6)].note
 		var noteB = noteList.filter(el => el.note !== noteA)[Math.floor(Math.random() * 5)].note
 		var noteC = noteList.filter(el => el.note !== noteA && el.note !== noteB)[Math.floor(Math.random() * 4)].note
 
-		choiceArr.push(noteA, noteB, noteC)   // push the decoy notes to the array
-		choiceArr.push(this.state.correct);   // push the correct note to the array
+		choiceArr.push(noteA, noteB, noteC, this.state.correct)   // push the correct and decoy notes to the array
 		
-		this.setState({ choices:  choiceArr}) // update this.state.choices with the new set of notes
+		this.setState({ choices:  choiceArr}) // replace this.state.choices with the new set of notes array
 	}
 	
 	// Reroutes to the completed quiz page:
@@ -75,35 +74,34 @@ class Quiz extends Component {
 	}
 	
 	checkChoice(option) {
-		// if user chooses correctly, update state accordingly:
+		// if user chooses correctly:
 		if (option === this.state.correct) {
 			this.setState({
-				userMessage:    'Correct!',	
-				correct:  			notes[Math.floor(Math.random() * notes.length)].note,
+				userMessage:    'Correct!',	  // alert the user that they chose correctly
+				correct:  			notes[Math.floor(Math.random() * notes.length)].note, // assign new correct note
 				numberCorrect:  this.state.firstTry ? this.state.numberCorrect + 1 : this.state.numberCorrect,
-				firstTry:       true,
-				questionNumber: this.state.questionNumber + 1,
-				notesEnter:     false,      // reset the QuizOptions note enter animation
-				incorrectNotes: false
+				firstTry:       true,         // reset firstTry for the next question so the user can gain points
+				questionNumber: this.state.questionNumber + 1, 
+				notesEnter:     false,        // reset the QuizOptions notesEnter animation
+				incorrectNotes: false         // remove any previous QuizOptions incorrectNotes animation
 			}, () => {
-						this.pushChoices();
+						this.pushChoices();       // create new note choices for the next question
 						this.setState({ 
-							notesEnter: true, 	  // triggers rendering of QuizOptions noteEnter animation
+							notesEnter: true, 	    // trigger rendering of QuizOptions notesEnter animation
 						}) 
 					} 
 				)
-			// Reset the user message:
-			this.clearUserMessage();
-		} else { 							
-			// Alert the user that they chose incorrectly & update firstTry:
+			this.clearUserMessage();        // reset the user message to 'Choose the correct note:' after 2 sec
+		} else { 
+			// If user chooses incorrectly:
 			this.setState({ 
-				userMessage:    'Try again!',
-				firstTry:       false,      // prevents user from earning points after choosing incorrectly
-				notesEnter:     false,      // removes notesEnter QuizOptions
-				incorrectNotes: false       // resets incorrectNotes QuizOptions in case of multiple incorrect choices
+				userMessage:    'Try again!', // alert the user that they chose incorrectly
+				firstTry:       false,        // prevent user from earning points after choosing incorrectly
+				notesEnter:     false,        // remove QuizOptions notesEnter animation
+				incorrectNotes: false         // reset QuizOptions incorrectNotes animation if multiple incorrect choices
 			}, () => {
-				this.clearUserMessage();    // reset the user message
-				this.setState({ incorrectNotes: true }) // triggers rendering of incorrectNotes QuizOptions
+				this.clearUserMessage();      // reset the user message to 'Choose the correct note:'
+				this.setState({ incorrectNotes: true }) // trigger rendering of QuizOptions incorrectNotes animation
 			})
 		}
 	}
